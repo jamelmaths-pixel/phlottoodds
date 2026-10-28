@@ -1,0 +1,56 @@
+name: Update results and publish
+
+on:
+  schedule:
+    - cron: "45 6 * * *"
+    - cron: "45 9 * * *"
+    - cron: "50 13 * * *"
+    - cron: "30 15 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch new results
+        if: github.event_name != 'push'
+        run: python scripts/update.py
+
+      - name: Rebuild pages only
+        if: github.event_name == 'push'
+        run: python scripts/update.py --build-only
+
+      - name: Save changes
+        run: |
+          git config user.name "results-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site
+          git diff --cached --quiet || git commit -m "Update PCSO results"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
