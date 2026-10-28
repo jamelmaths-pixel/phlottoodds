@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About PH Lotto Odds</title>
+<meta name="description" content="Who makes PH Lotto Odds and why: plain, honest math about PCSO lottery games.">
+<link rel="canonical" href="https://phlottoodds.com/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PH Lotto Odds">
+<meta property="og:title" content="About PH Lotto Odds">
+<meta property="og:description" content="Who makes PH Lotto Odds and why: plain, honest math about PCSO lottery games.">
+<meta property="og:url" content="https://phlottoodds.com/about.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23F2B33D%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single reading column like a stats handbook; each section is a "card" only where it holds a working tool. */
+:root{
+  --bg:#EEF2F4; --paper:#FFFFFF; --ink:#13232E; --muted:#5A6B76; --line:#D3DCE1;
+  --accent:#0F6E8C; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#C2462B; --good:#2E7D4F;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:grid;gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;min-width:0}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.ballmini{width:22px;height:22px;border-radius:50%;background:var(--ball);display:inline-block;box-shadow:inset -3px -3px 0 rgba(0,0,0,.15)}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 .9rem var(--mono);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{display:grid;gap:20px}
+.odds-big{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px}
+.odds-big .n{font:700 clamp(2.4rem,7vw,4.4rem)/1 var(--mono);letter-spacing:-.03em}
+.balls{display:flex;gap:8px;flex-wrap:wrap}
+.ball{width:44px;height:44px;border-radius:50%;background:var(--ball);color:var(--ball-ink);display:grid;place-items:center;font:600 1rem var(--mono);box-shadow:inset -5px -6px 0 rgba(0,0,0,.14)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fact{border-top:2px solid var(--line);padding-top:10px;display:grid;gap:4px}
+.fact b{font:600 1.25rem var(--mono)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.r,th.r{text-align:right}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+label{display:grid;gap:4px;font-size:.82rem;color:var(--muted)}
+input,select,textarea{font:500 1rem var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:110px;font-size:.85rem}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--ink)}
+.check input{width:auto}
+.result{display:grid;gap:10px;align-content:start}
+.result .big{font:700 2rem var(--mono)}
+.bar{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--hot)}
+button{font:600 .92rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{font:600 .75rem var(--mono);padding:3px 9px;border-radius:999px;border:1px solid currentColor}
+.pill.good{color:var(--good)}.pill.warn{color:var(--hot)}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.chart{overflow-x:auto}
+.note{font-size:.85rem;color:var(--muted)}
+.adslot{border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font:500 .75rem var(--mono);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+footer{border-top:1px solid var(--line);padding-top:20px;display:grid;gap:10px;font-size:.88rem;color:var(--muted)}
+.status{font-size:.88rem}
+@media (prefers-reduced-motion:no-preference){.ball{transition:transform .2s}.ball:hover{transform:translateY(-3px)}}
+
+a.brand{color:var(--ink);text-decoration:none}
+.footlinks a{color:var(--accent)}
+.prose{display:grid;gap:14px;max-width:70ch}
+.prose h2{margin-top:12px}
+.prose ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.prose a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="ballmini"></span>PH Lotto Odds</a>
+    <nav><a href="/#odds">Odds</a><a href="/#value">Expected value</a><a href="/#hot">Hot numbers?</a><a href="/#archive">Results archive</a></nav>
+  </header>
+
+  <article class="prose">
+    <p class="eyebrow">About</p>
+    <h1>Plain math for PCSO lottery games</h1>
+    <p>PH Lotto Odds is an independent website made by a mathematics teacher living in Metro Manila. It explains, with real numbers, how the lottery games of the Philippine Charity Sweepstakes Office (PCSO) actually work.</p>
+    <p>Many websites sell “winning combinations”, “hot numbers” or prediction systems. They do not work. Every PCSO draw is independent of the previous ones, so every combination has exactly the same chance in every draw. This site shows why, using the official results of the past ten years.</p>
+    <h2>What you will find here</h2>
+    <ul>
+      <li>The exact odds for every PCSO game, from 2D EZ2 to Ultra Lotto 6/58.</li>
+      <li>An expected value calculator that shows how much of a ticket's price comes back to players on average.</li>
+      <li>Frequency charts and simple statistical tests on the official results since October 2016.</li>
+      <li>The latest results of every game, updated automatically after each draw, and a searchable archive since 2016.</li>
+    </ul>
+    <h2>What you will never find here</h2>
+    <ul>
+      <li>Predictions, “lucky numbers” or paid tips.</li>
+      <li>Ticket sales or betting of any kind.</li>
+    </ul>
+    <h2>Where the data comes from</h2>
+    <p>The archive since 2016 comes from the official PCSO website. New results are collected automatically several times a day from the results published by GMA News Online, and checked for obvious errors before they appear here. A mistake is still possible: always check pcso.gov.ph before claiming a prize.</p>
+    <h2>Independence</h2>
+    <p>This site is not affiliated with, endorsed by or connected to the PCSO or any lottery operator. It may show advertising to cover its costs.</p>
+    <h2>Play responsibly</h2>
+    <p>The lottery is entertainment, not a way to earn money. On average, players get back less than they spend. Never play with money you need for rent, food, health or school.</p>
+  </article>
+
+  <footer>
+    <p><strong>Play responsibly.</strong> The lottery is entertainment, not an investment. No method, software or past result can raise your chance of winning.</p>
+    <p>This site is independent and not affiliated with the Philippine Charity Sweepstakes Office (PCSO). Official results and prize amounts: pcso.gov.ph.</p>
+    <p class="footlinks"><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PH Lotto Odds: Real PCSO Lotto Odds, Expected Value & Results Since 2016</title>
+<meta name="description" content="Real odds, expected value and 10 years of official PCSO lotto results (6/58, 6/55, 6/49, 6/45, 6/42, 6D, 4D, 3D, 2D), explained with plain math.">
+<link rel="canonical" href="https://phlottoodds.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PH Lotto Odds">
+<meta property="og:title" content="PH Lotto Odds: Real PCSO Lotto Odds, Expected Value & Results Since 2016">
+<meta property="og:description" content="Real odds, expected value and 10 years of official PCSO lotto results (6/58, 6/55, 6/49, 6/45, 6/42, 6D, 4D, 3D, 2D), explained with plain math.">
+<meta property="og:url" content="https://phlottoodds.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23F2B33D%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single reading column like a stats handbook; each section is a "card" only where it holds a working tool. */
+:root{
+  --bg:#EEF2F4; --paper:#FFFFFF; --ink:#13232E; --muted:#5A6B76; --line:#D3DCE1;
+  --accent:#0F6E8C; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#C2462B; --good:#2E7D4F;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:grid;gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;min-width:0}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.ballmini{width:22px;height:22px;border-radius:50%;background:var(--ball);display:inline-block;box-shadow:inset -3px -3px 0 rgba(0,0,0,.15)}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 .9rem var(--mono);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{display:grid;gap:20px}
+.odds-big{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px}
+.odds-big .n{font:700 clamp(2.4rem,7vw,4.4rem)/1 var(--mono);letter-spacing:-.03em}
+.balls{display:flex;gap:8px;flex-wrap:wrap}
+.ball{width:44px;height:44px;border-radius:50%;background:var(--ball);color:var(--ball-ink);display:grid;place-items:center;font:600 1rem var(--mono);box-shadow:inset -5px -6px 0 rgba(0,0,0,.14)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fact{border-top:2px solid var(--line);padding-top:10px;display:grid;gap:4px}
+.fact b{font:600 1.25rem var(--mono)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.r,th.r{text-align:right}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+label{display:grid;gap:4px;font-size:.82rem;color:var(--muted)}
+input,select,textarea{font:500 1rem var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:110px;font-size:.85rem}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--ink)}
+.check input{width:auto}
+.result{display:grid;gap:10px;align-content:start}
+.result .big{font:700 2rem var(--mono)}
+.bar{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--hot)}
+button{font:600 .92rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{font:600 .75rem var(--mono);padding:3px 9px;border-radius:999px;border:1px solid currentColor}
+.pill.good{color:var(--good)}.pill.warn{color:var(--hot)}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.chart{overflow-x:auto}
+.note{font-size:.85rem;color:var(--muted)}
+.adslot{border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font:500 .75rem var(--mono);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+footer{border-top:1px solid var(--line);padding-top:20px;display:grid;gap:10px;font-size:.88rem;color:var(--muted)}
+.status{font-size:.88rem}
+@media (prefers-reduced-motion:no-preference){.ball{transition:transform .2s}.ball:hover{transform:translateY(-3px)}}
+
+a.brand{color:var(--ink);text-decoration:none}
+.footlinks a{color:var(--accent)}
+.prose{display:grid;gap:14px;max-width:70ch}
+.prose h2{margin-top:12px}
+.prose ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.prose a{color:var(--accent)}
+.lucky-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.lucky-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;min-width:0}
+.lucky-card h3{font-size:.95rem}
+.lucky-card .balls{gap:6px}
+.lucky-card .ball{width:34px;height:34px;font-size:.85rem}
+.lucky-card .odds{font:500 .8rem var(--mono);color:var(--muted)}
+
+/* generated: results */
+.result-card{align-content:start}
+.result-card h3 a{color:var(--ink);text-decoration:none}.result-card h3 a:hover{color:var(--accent)}
+.ball.sm{width:34px;height:34px;font-size:.85rem}
+.draw{display:flex;align-items:center;gap:10px}.draw .when{font:600 .75rem var(--mono);color:var(--muted);min-width:42px}
+.updated{font:500 .8rem var(--mono);color:var(--muted)}
+.gamelinks{display:flex;flex-wrap:wrap;gap:8px}.gamelinks a{font:600 .85rem var(--mono);color:var(--accent);border:1px solid var(--line);background:var(--paper);padding:6px 11px;border-radius:999px;text-decoration:none}
+.gamelinks a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="ballmini"></span>PH Lotto Odds</a>
+    <nav><a href="/#results">Results today</a><a href="/#odds">Odds</a><a href="/#value">Expected value</a><a href="/#hot">Hot numbers?</a><a href="/how-pcso-odds-work/">Guide</a></nav>
+  </header>
+
+  <section class="hero" aria-labelledby="h-hero">
+    <p class="eyebrow">Plain math for PCSO games</p>
+    <h1 id="h-hero">What are your real chances of hitting the jackpot?</h1>
+    <div class="chips" id="gamechips" role="group" aria-label="Choose a game"></div>
+    <div class="odds-big"><span class="n" id="hero-odds">—</span><span class="muted" id="hero-sub"></span></div>
+    <div class="balls" id="hero-balls" aria-label="Random example combination"></div>
+    <div class="facts" id="hero-facts"></div>
+  </section>
+
+<!--RESULTS:START-->
+  <section id="results" aria-labelledby="h-results">
+    <p class="eyebrow">PCSO lotto result today</p>
+    <h2 id="h-results">Latest PCSO results</h2>
+    <p class="updated">Updated automatically after the 2 PM, 5 PM and 9 PM draws · last check Oct 28, 2026, 3:45 PM Manila time</p>
+    <div class="lucky-grid"><div class="lucky-card result-card"><h3><a href="/ultra-lotto-6-58/">Ultra Lotto 6/58</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="balls"><span class="ball sm">55</span><span class="ball sm">12</span><span class="ball sm">48</span><span class="ball sm">22</span><span class="ball sm">38</span><span class="ball sm">40</span></div><span class="odds">Jackpot: <b>₱449,844,291.78</b></span></div><div class="lucky-card result-card"><h3><a href="/grand-lotto-6-55/">Grand Lotto 6/55</a></h3><span class="odds">Mon, Oct 26, 2026</span><div class="balls"><span class="ball sm">27</span><span class="ball sm">38</span><span class="ball sm">44</span><span class="ball sm">51</span><span class="ball sm">20</span><span class="ball sm">47</span></div><span class="odds">Jackpot: <b>₱305,120,397.13</b></span></div><div class="lucky-card result-card"><h3><a href="/super-lotto-6-49/">Super Lotto 6/49</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="balls"><span class="ball sm">04</span><span class="ball sm">03</span><span class="ball sm">22</span><span class="ball sm">37</span><span class="ball sm">17</span><span class="ball sm">24</span></div><span class="odds">Jackpot: <b>₱70,236,247.62</b></span></div><div class="lucky-card result-card"><h3><a href="/mega-lotto-6-45/">Mega Lotto 6/45</a></h3><span class="odds">Mon, Oct 26, 2026</span><div class="balls"><span class="ball sm">06</span><span class="ball sm">34</span><span class="ball sm">45</span><span class="ball sm">36</span><span class="ball sm">30</span><span class="ball sm">16</span></div><span class="odds">Jackpot: <b>₱15,000,000.00</b></span></div><div class="lucky-card result-card"><h3><a href="/lotto-6-42/">Lotto 6/42</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="balls"><span class="ball sm">17</span><span class="ball sm">18</span><span class="ball sm">13</span><span class="ball sm">41</span><span class="ball sm">30</span><span class="ball sm">24</span></div><span class="odds">Jackpot: <b>₱18,307,103.65</b></span></div><div class="lucky-card result-card"><h3><a href="/6d-lotto/">6D Lotto</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="balls"><span class="ball sm">6</span><span class="ball sm">9</span><span class="ball sm">7</span><span class="ball sm">9</span><span class="ball sm">7</span><span class="ball sm">0</span></div><span class="odds">First prize: <b>₱3,163,651.44</b></span></div><div class="lucky-card result-card"><h3><a href="/4d-lotto/">4D Lotto</a></h3><span class="odds">Mon, Oct 26, 2026</span><div class="balls"><span class="ball sm">6</span><span class="ball sm">5</span><span class="ball sm">5</span><span class="ball sm">3</span></div><span class="odds">First prize: <b>₱32,492.00</b></span></div><div class="lucky-card result-card"><h3><a href="/swertres-3d/">3D Swertres</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="draw"><span class="when">2PM</span><div class="balls"><span class="ball sm">1</span><span class="ball sm">6</span><span class="ball sm">5</span></div></div><div class="draw"><span class="when">5PM</span><div class="balls"><span class="ball sm">2</span><span class="ball sm">4</span><span class="ball sm">1</span></div></div><div class="draw"><span class="when">9PM</span><div class="balls"><span class="ball sm">8</span><span class="ball sm">3</span><span class="ball sm">8</span></div></div></div><div class="lucky-card result-card"><h3><a href="/ez2-2d/">2D EZ2</a></h3><span class="odds">Tue, Oct 27, 2026</span><div class="draw"><span class="when">2PM</span><div class="balls"><span class="ball sm">05</span><span class="ball sm">04</span></div></div><div class="draw"><span class="when">5PM</span><div class="balls"><span class="ball sm">17</span><span class="ball sm">01</span></div></div><div class="draw"><span class="when">9PM</span><div class="balls"><span class="ball sm">07</span><span class="ball sm">30</span></div></div></div></div>
+  </section>
+<!--RESULTS:END-->
+
+  <section id="lucky" aria-labelledby="h-lucky">
+    <p class="eyebrow">Today's Lucky Pick · <span id="lucky-date"></span></p>
+    <h2 id="h-lucky">A random pick for every game, just for fun</h2>
+    <p class="muted">A new set every day at midnight, Manila time. These numbers are drawn at random. They are not predictions and they have exactly the same chance as any other combination.</p>
+    <div class="lucky-grid" id="lucky-grid"></div>
+  </section>
+
+  <div class="adslot">Advertisement</div>
+
+  <section id="odds" aria-labelledby="h-odds">
+    <h2 id="h-odds">Odds for every PCSO game</h2>
+    <p class="muted">Every combination has exactly the same chance in every draw. These numbers come from counting combinations, not from past results.</p>
+    <div class="card"><div class="tablewrap"><table id="odds-table"></table></div></div>
+  </section>
+
+  <section id="value" aria-labelledby="h-value">
+    <h2 id="h-value">Expected value: what a ticket returns on average</h2>
+    <p class="muted">Enter the current jackpot and prizes. The calculator weighs each prize by its probability. Default prize amounts are examples; check the official amounts on pcso.gov.ph before relying on them.</p>
+    <div class="card grid2">
+      <div style="display:grid;gap:14px;min-width:0">
+        <label for="ev-game">Game<select id="ev-game"></select></label>
+        <div class="fields" id="ev-fields"></div>
+        <label class="check"><input type="checkbox" id="ev-tax" checked> Deduct 20% tax on prizes above ₱10,000</label>
+        <label for="ev-weekly">Tickets per week<input id="ev-weekly" type="number" min="0" step="1" value="3"></label>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="eyebrow">Average return per ticket</span>
+        <span class="big num" id="ev-out">—</span>
+        <div class="bar" aria-hidden="true"><span id="ev-bar"></span></div>
+        <p id="ev-text"></p>
+        <p class="note">Jackpots are shared when several people win the same draw, so the real value of a big jackpot is lower than shown.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="adslot">Advertisement</div>
+
+  <section id="hot" aria-labelledby="h-hot">
+    <h2 id="h-hot">Are some numbers “hot”?</h2>
+    <p class="muted">Each bar shows how often a number came out. If the draw is fair, bars wobble randomly around the dashed line. The test below checks whether numbers that were frequent in the first half of the draws stay frequent in the second half.</p>
+    <div class="card">
+      <div class="row">
+        <label for="an-game" style="min-width:150px">Game<select id="an-game"></select></label>
+        <label for="an-mode" style="min-width:190px">Data<select id="an-mode"><option value="real">Official results since 2016</option><option value="sim">Fair random simulation</option></select></label>
+        <button id="an-sim" type="button" class="ghost" hidden>New simulation</button>
+      </div>
+      <p class="status" id="an-source"></p>
+      <div class="chart" id="an-chart"></div>
+      <div class="facts" id="an-facts"></div>
+    </div>
+  </section>
+
+  <section id="archive" aria-labelledby="h-archive">
+    <h2 id="h-archive">Results archive</h2>
+    <p class="muted" id="ar-intro">Official PCSO results, newest first.</p>
+    <div class="card">
+      <div class="row">
+        <label for="ar-game" style="min-width:150px">Game<select id="ar-game"></select></label>
+        <label for="ar-year" style="min-width:120px">Year<select id="ar-year"></select></label>
+      </div>
+      <div class="tablewrap"><table id="ar-table"></table></div>
+      <p class="status" id="ar-status"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Play responsibly.</strong> The lottery is entertainment, not an investment. No method, software or past result can raise your chance of winning. Never play money you need for rent, food or school.</p>
+    <p>This site is independent and not affiliated with the Philippine Charity Sweepstakes Office (PCSO). Results are collected automatically from published sources and may contain errors: always check pcso.gov.ph before claiming a prize.</p>
+    <p class="footlinks"><a href="/">Home</a> · <a href="/ultra-lotto-6-58/">Ultra Lotto 6/58</a> · <a href="/grand-lotto-6-55/">Grand Lotto 6/55</a> · <a href="/super-lotto-6-49/">Super Lotto 6/49</a> · <a href="/mega-lotto-6-45/">Mega Lotto 6/45</a> · <a href="/lotto-6-42/">Lotto 6/42</a> · <a href="/6d-lotto/">6D Lotto</a> · <a href="/4d-lotto/">4D Lotto</a> · <a href="/swertres-3d/">3D Swertres</a> · <a href="/ez2-2d/">2D EZ2</a> · <a href="/how-pcso-odds-work/">How PCSO odds work</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+
+<script>
+(function(){
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const peso=n=>'₱'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pesoShort=n=>n>=1e6?'₱'+(n/1e6).toFixed(1)+' M':peso(n);
+function C(n,k){if(k<0||k>n)return 0;let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return Math.round(r);}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// Prize defaults are examples to be checked against pcso.gov.ph; jackpots are replaced by the latest official value once data loads.
+const GAMES=[
+ {id:'658',name:'Ultra Lotto 6/58',type:'pick',N:58,price:25,jackpot:75e6,p3:100,p4:2000,p5:120000,perWeek:3},
+ {id:'655',name:'Grand Lotto 6/55',type:'pick',N:55,price:25,jackpot:45e6,p3:60,p4:1500,p5:100000,perWeek:3},
+ {id:'649',name:'Super Lotto 6/49',type:'pick',N:49,price:25,jackpot:25e6,p3:50,p4:1200,p5:50000,perWeek:3},
+ {id:'645',name:'Mega Lotto 6/45',type:'pick',N:45,price:25,jackpot:15e6,p3:30,p4:1000,p5:40000,perWeek:3},
+ {id:'642',name:'Lotto 6/42',type:'pick',N:42,price:25,jackpot:10e6,p3:20,p4:800,p5:24000,perWeek:3},
+ {id:'6d',name:'6D Lotto',type:'digits',k:6,price:20,prize:150000,perWeek:3},
+ {id:'4d',name:'4D Lotto',type:'digits',k:4,price:10,prize:50000,perWeek:3},
+ {id:'3d',name:'3D Swertres',type:'digits',k:3,price:10,prize:4500,perWeek:21},
+ {id:'2d',name:'2D EZ2',type:'ez2',price:10,prize:4000,perWeek:21}
+];
+const byId=id=>GAMES.find(g=>g.id===id);
+function combos(g){if(g.type==='pick')return C(g.N,6);if(g.type==='digits')return Math.pow(10,g.k);return 31*31;}
+function shortName(g){return g.name.replace(/^(Ultra|Grand|Super|Mega) Lotto /,'').replace(' Lotto','').replace(' Swertres','').replace(' EZ2','');}
+function randInt(max){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%max;}
+function randomDraw(g){
+  if(g.type==='pick'){const s=new Set();while(s.size<6)s.add(1+randInt(g.N));return [...s];}
+  if(g.type==='digits'){return Array.from({length:g.k},()=>randInt(10));}
+  return [1+randInt(31),1+randInt(31)];
+}
+const showNum=(g,x)=>g.type==='digits'?String(x):String(x).padStart(2,'0');
+const longDate=s=>{const d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});};
+
+// DATA: {gameId:[[date,[nums],prize,winners,time?],...]} oldest first
+let DATA=null;
+const draws=id=>DATA&&DATA[id]?DATA[id].map(r=>({date:r[0],nums:r[1],prize:r[2],winners:r[3],time:r[4]||''})):null;
+
+// ---------- Hero ----------
+let heroGame=byId('658');
+const chipBox=document.getElementById('gamechips');
+GAMES.forEach(g=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=shortName(g);b.setAttribute('aria-pressed',g===heroGame);b.onclick=()=>{heroGame=g;[...chipBox.children].forEach(c=>c.setAttribute('aria-pressed',c===b));renderHero();};chipBox.appendChild(b);});
+function renderHero(){
+  const g=heroGame,n=combos(g),ds=draws(g.id);
+  document.getElementById('hero-odds').textContent='1 in '+fmt(n);
+  document.getElementById('hero-sub').textContent='for '+g.name+' with one ticket';
+  const balls=document.getElementById('hero-balls');
+  let nums,cap;
+  if(ds&&ds.length){const last=ds[ds.length-1];nums=last.nums;cap='Latest draw, '+longDate(last.date)+(last.time?' '+last.time:'');}
+  else{nums=randomDraw(g);if(g.type==='pick')nums.sort((a,b)=>a-b);cap='Random example';}
+  balls.innerHTML=nums.map(x=>'<span class="ball">'+showNum(g,x)+'</span>').join('')+'<span class="muted" style="align-self:center">'+cap+'</span>';
+  const yrs=n/(g.perWeek*52);
+  const facts=[
+    [(yrs>=1?fmt(yrs)+' years':fmt(yrs*52)+' weeks'),'Average wait for a jackpot buying one ticket per draw ('+g.perWeek+' draws a week).'],
+    [peso(n*g.price),'Cost of buying every combination at ₱'+g.price+' a ticket.']
+  ];
+  if(ds&&ds.length&&g.type!=='ez2'&&g.id!=='3d'){
+    const hits=ds.filter(d=>d.winners>0).length;
+    facts.unshift([fmt(hits)+' of '+fmt(ds.length),'Draws where somebody won the top prize since '+longDate(ds[0].date)+'.']);
+  } else facts.unshift(['Every combination','Same chance. 1-2-3-4-5-6 is exactly as likely as any other pick.']);
+  document.getElementById('hero-facts').innerHTML=facts.map(f=>'<div class="fact"><b>'+f[0]+'</b><span class="muted">'+f[1]+'</span></div>').join('');
+}
+
+// ---------- Odds table ----------
+function pickTier(N,k){return C(6,k)*C(N-6,6-k)/C(N,6);}
+(function(){
+  let h='<thead><tr><th>Game</th><th class="r">Jackpot odds</th><th class="r">5 numbers</th><th class="r">4 numbers</th><th class="r">3 numbers</th><th class="r">Any prize</th></tr></thead><tbody>';
+  GAMES.forEach(g=>{
+    if(g.type==='pick'){const p5=pickTier(g.N,5),p4=pickTier(g.N,4),p3=pickTier(g.N,3),any=p3+p4+p5+1/combos(g);
+      h+='<tr><td>'+g.name+'</td><td class="r num">1 in '+fmt(combos(g))+'</td><td class="r num">1 in '+fmt(1/p5)+'</td><td class="r num">1 in '+fmt(1/p4)+'</td><td class="r num">1 in '+fmt(1/p3)+'</td><td class="r num">1 in '+fmt(1/any)+'</td></tr>';}
+    else{h+='<tr><td>'+g.name+' <span class="muted">(exact order)</span></td><td class="r num">1 in '+fmt(combos(g))+'</td><td class="r muted">—</td><td class="r muted">—</td><td class="r muted">—</td><td class="r num">1 in '+fmt(combos(g))+'</td></tr>';}
+  });
+  document.getElementById('odds-table').innerHTML=h+'</tbody>';
+})();
+
+// ---------- Expected value ----------
+const evSel=document.getElementById('ev-game');
+GAMES.forEach(g=>evSel.add(new Option(g.name,g.id)));
+function fieldHTML(id,label,v){return '<label for="'+id+'">'+label+'<input id="'+id+'" type="number" min="0" step="any" value="'+v+'"></label>';}
+function buildEvFields(){
+  const g=byId(evSel.value),ds=draws(g.id),last=ds&&ds.length?ds[ds.length-1]:null;
+  let h=fieldHTML('ev-price','Ticket price (₱)',g.price);
+  if(g.type==='pick'){h+=fieldHTML('ev-jp',last?'Jackpot, '+longDate(last.date)+' (₱)':'Jackpot (₱)',last&&last.prize?last.prize:g.jackpot)+fieldHTML('ev-p5','5 numbers (₱)',g.p5)+fieldHTML('ev-p4','4 numbers (₱)',g.p4)+fieldHTML('ev-p3','3 numbers (₱)',g.p3);}
+  else h+=fieldHTML('ev-jp','Prize for a win (₱)',last&&last.prize?last.prize:g.prize);
+  document.getElementById('ev-fields').innerHTML=h;
+  document.querySelectorAll('#ev-fields input').forEach(i=>i.addEventListener('input',calcEv));
+  document.getElementById('ev-weekly').value=g.perWeek;calcEv();
+}
+function val(id){const el=document.getElementById(id);const v=el?parseFloat(el.value):NaN;return isFinite(v)&&v>=0?v:0;}
+function calcEv(){
+  const g=byId(evSel.value),tax=document.getElementById('ev-tax').checked;
+  const net=x=>tax&&x>10000?x*0.8:x;const price=val('ev-price');let ev;
+  if(g.type==='pick'){ev=net(val('ev-jp'))/combos(g)+net(val('ev-p5'))*pickTier(g.N,5)+net(val('ev-p4'))*pickTier(g.N,4)+net(val('ev-p3'))*pickTier(g.N,3);}
+  else ev=net(val('ev-jp'))/combos(g);
+  const ratio=price>0?ev/price:0,weekly=val('ev-weekly');
+  document.getElementById('ev-out').textContent=peso(ev)+' per ₱'+fmt(price);
+  document.getElementById('ev-bar').style.width=Math.min(100,ratio*100)+'%';
+  const loss=(price-ev)*weekly*52;
+  document.getElementById('ev-text').innerHTML='On average a ticket gives back <strong class="num">'+(ratio*100).toFixed(1)+'%</strong> of its price. Playing <span class="num">'+fmt(weekly)+'</span> tickets a week, the expected cost over a year is about <strong class="num">'+peso(Math.max(0,loss))+'</strong>.'+(ratio>1?' <span class="pill good">Jackpot unusually high</span>':'');
+}
+evSel.addEventListener('change',buildEvFields);
+document.getElementById('ev-tax').addEventListener('change',calcEv);
+document.getElementById('ev-weekly').addEventListener('input',calcEv);
+
+// ---------- Statistics ----------
+function lgamma(z){const g=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];let x=z,y=z,t=x+5.5;t-=(x+0.5)*Math.log(t);let s=1.000000000190015;for(const c of g)s+=c/++y;return -t+Math.log(2.5066282746310005*s/x);}
+function gammaQ(a,x){
+  if(x<=0)return 1;const gln=lgamma(a);
+  if(x<a+1){let sum=1/a,del=sum,ap=a;for(let n=0;n<1000;n++){ap++;del*=x/ap;sum+=del;if(Math.abs(del)<Math.abs(sum)*1e-12)break;}return Math.max(0,1-sum*Math.exp(-x+a*Math.log(x)-gln));}
+  let b=x+1-a,c=1e300,d=1/b,h=d;for(let i=1;i<1000;i++){const an=-i*(i-a);b+=2;d=an*d+b;if(Math.abs(d)<1e-300)d=1e-300;c=b+an/c;if(Math.abs(c)<1e-300)c=1e-300;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-12)break;}
+  return Math.exp(-x+a*Math.log(x)-gln)*h;
+}
+function domain(g){if(g.type==='pick')return {lo:1,hi:g.N};if(g.type==='digits')return {lo:0,hi:9};return {lo:1,hi:31};}
+function counts(g,ds){const {lo,hi}=domain(g);const c=new Array(hi-lo+1).fill(0);ds.forEach(d=>d.nums.forEach(x=>c[x-lo]++));return c;}
+function corr(a,b){const n=a.length,ma=a.reduce((s,x)=>s+x,0)/n,mb=b.reduce((s,x)=>s+x,0)/n;let sab=0,sa=0,sb=0;for(let i=0;i<n;i++){sab+=(a[i]-ma)*(b[i]-mb);sa+=(a[i]-ma)**2;sb+=(b[i]-mb)**2;}return sa&&sb?sab/Math.sqrt(sa*sb):0;}
+
+const anSel=document.getElementById('an-game'),anMode=document.getElementById('an-mode'),arSel=document.getElementById('ar-game'),arYear=document.getElementById('ar-year');
+GAMES.forEach(g=>{anSel.add(new Option(g.name,g.id));arSel.add(new Option(g.name,g.id));});
+let simDraws=null;
+function analyze(){
+  const g=byId(anSel.value),real=draws(g.id);
+  if(!real){anMode.value='sim';anMode.options[0].disabled=true;} else anMode.options[0].disabled=false;
+  const useReal=anMode.value==='real'&&real;
+  document.getElementById('an-sim').hidden=useReal;
+  let ds,label;
+  if(useReal){ds=real;label='Official results: <strong>'+fmt(ds.length)+'</strong> draws of '+g.name+', '+longDate(ds[0].date)+' to '+longDate(ds[ds.length-1].date)+'.';}
+  else{const n=real?real.length:1500;if(!simDraws||simDraws.game!==g.id)simDraws={game:g.id,draws:Array.from({length:n},()=>({nums:randomDraw(g)}))};
+    ds=simDraws.draws;label='Simulation: <strong>'+fmt(ds.length)+'</strong> perfectly fair random draws of '+g.name+'. Compare its shape with the official results.';}
+  document.getElementById('an-source').innerHTML=label;
+  const {lo}=domain(g),c=counts(g,ds),total=c.reduce((s,x)=>s+x,0),exp=total/c.length;
+  const W=Math.max(560,c.length*14+50),H=220,pad={l:44,r:10,t:10,b:28},bw=(W-pad.l-pad.r)/c.length,max=Math.max(...c,exp)*1.1;
+  const y=v=>pad.t+(H-pad.t-pad.b)*(1-v/max);
+  let s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Frequency of each number">';
+  for(let i=0;i<=4;i++){const v=max*i/4;s+='<line x1="'+pad.l+'" x2="'+(W-pad.r)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="var(--line)"/><text x="'+(pad.l-6)+'" y="'+(y(v)+3)+'" text-anchor="end">'+fmt(v)+'</text>';}
+  const sd=Math.sqrt(exp);
+  c.forEach((v,i)=>{const x=pad.l+i*bw+1,out=v>exp+2*sd||v<exp-2*sd;s+='<rect x="'+x+'" y="'+y(v)+'" width="'+Math.max(1,bw-2)+'" height="'+(y(0)-y(v))+'" rx="2" fill="'+(out?'var(--hot)':'var(--accent)')+'"><title>'+(i+lo)+': '+fmt(v)+' times</title></rect>';
+    if(c.length<=31||(i+lo)%5===0||i===0)s+='<text x="'+(x+bw/2-1)+'" y="'+(H-10)+'" text-anchor="middle">'+(i+lo)+'</text>';});
+  s+='<line x1="'+pad.l+'" x2="'+(W-pad.r)+'" y1="'+y(exp)+'" y2="'+y(exp)+'" stroke="var(--ink)" stroke-dasharray="5 4"/></svg>';
+  document.getElementById('an-chart').innerHTML=s;
+  const chi=c.reduce((acc,v)=>acc+(v-exp)**2/exp,0),df=c.length-1,p=gammaQ(df/2,chi/2);
+  const half=Math.floor(ds.length/2),c1=counts(g,ds.slice(0,half)),c2=counts(g,ds.slice(half));
+  const order=c1.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]),top=order.slice(0,Math.max(3,Math.round(c.length/6))).map(x=>x[1]);
+  const avg2=c2.reduce((s,x)=>s+x,0)/c2.length,top2=top.reduce((s,i)=>s+c2[i],0)/top.length,r=corr(c1,c2);
+  const nOut=c.filter(v=>v>exp+2*sd||v<exp-2*sd).length;
+  document.getElementById('an-facts').innerHTML=
+    '<div class="fact"><b class="num">p = '+p.toFixed(3)+'</b><span class="muted">Uniformity test (chi-square, '+df+' degrees of freedom). '+(p>0.01?'<span class="pill good">Consistent with a fair draw</span>':'<span class="pill warn">Unusual, worth a closer look</span>')+'</span></div>'+
+    '<div class="fact"><b class="num">'+top2.toFixed(1)+' vs '+avg2.toFixed(1)+'</b><span class="muted">Appearances in the second half for the '+top.length+' “hottest” numbers of the first half, against the average number.</span></div>'+
+    '<div class="fact"><b class="num">r = '+r.toFixed(2)+'</b><span class="muted">Correlation between first-half and second-half frequencies. Near 0 means past frequency predicts nothing.</span></div>'+
+    '<div class="fact"><b class="num">'+nOut+' of '+c.length+'</b><span class="muted">Bars in red, outside the usual random range. About 5% of bars land there by pure chance.</span></div>';
+}
+anSel.addEventListener('change',analyze);anMode.addEventListener('change',analyze);
+document.getElementById('an-sim').addEventListener('click',()=>{simDraws=null;analyze();});
+
+// ---------- Archive ----------
+function fillYears(){
+  const ds=draws(arSel.value)||[],years=[...new Set(ds.map(d=>d.date.slice(0,4)))].sort().reverse();
+  arYear.innerHTML='';years.forEach(y=>arYear.add(new Option(y,y)));renderArchive();
+}
+function renderArchive(){
+  const g=byId(arSel.value),ds=draws(g.id),t=document.getElementById('ar-table'),st=document.getElementById('ar-status');
+  if(!ds){t.innerHTML='';st.textContent='Results could not be loaded. Reload the page to try again.';return;}
+  const rows=ds.filter(d=>d.date.startsWith(arYear.value)).reverse();
+  const multi=g.id==='3d'||g.id==='2d';
+  t.innerHTML='<thead><tr><th>Date</th>'+(multi?'<th>Draw</th>':'')+'<th>Winning numbers</th><th class="r">'+(g.type==='pick'?'Jackpot':'Prize')+'</th><th class="r">Winners</th></tr></thead><tbody>'+
+    rows.map(d=>'<tr><td class="num">'+longDate(d.date)+'</td>'+(multi?'<td class="num">'+esc(d.time)+'</td>':'')+'<td class="num">'+d.nums.map(x=>showNum(g,x)).join(' - ')+'</td><td class="r num">'+(d.prize!=null?peso(d.prize):'—')+'</td><td class="r num">'+(d.winners!=null?fmt(d.winners):'—')+'</td></tr>').join('')+'</tbody>';
+  st.textContent=fmt(rows.length)+' draws in '+arYear.value+'.';
+}
+arSel.addEventListener('change',fillYears);arYear.addEventListener('change',renderArchive);
+
+// ---------- Today's Lucky Pick (same for every visitor, changes at midnight Manila time) ----------
+function manilaDate(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Manila',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());}
+function seededRand(str){let h=1779033703^str.length;for(let i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353);h=h<<13|h>>>19;}
+  let a=h>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function luckyPick(g,day){const r=seededRand(day+'|'+g.id),ri=m=>Math.floor(r()*m);
+  if(g.type==='pick'){const s=new Set();while(s.size<6)s.add(1+ri(g.N));return [...s].sort((a,b)=>a-b);}
+  if(g.type==='digits')return Array.from({length:g.k},()=>ri(10));
+  return [1+ri(31),1+ri(31)];}
+function renderLucky(){
+  const day=manilaDate();
+  document.getElementById('lucky-date').textContent=longDate(day);
+  document.getElementById('lucky-grid').innerHTML=GAMES.map(g=>'<div class="lucky-card"><h3>'+g.name+'</h3><div class="balls">'+luckyPick(g,day).map(x=>'<span class="ball">'+showNum(g,x)+'</span>').join('')+'</div><span class="odds">Same chance as any pick: 1 in '+fmt(combos(g))+'</span></div>').join('');
+}
+renderLucky();
+
+// ---------- Boot ----------
+anSel.value='658';arSel.value='658';evSel.value='658';
+renderHero();buildEvFields();analyze();
+document.getElementById('ar-status').textContent='Loading official results…';
+fetch('pcso.json').then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
+  DATA=j;let total=0,first='9999',last='0000';
+  Object.values(j).forEach(a=>{total+=a.length;if(a.length){first=a[0][0]<first?a[0][0]:first;last=a[a.length-1][0]>last?a[a.length-1][0]:last;}});
+  document.getElementById('ar-intro').textContent=fmt(total)+' official PCSO draws from '+longDate(first)+' to '+longDate(last)+', newest first.';
+  renderHero();buildEvFields();analyze();fillYears();
+}).catch(()=>{document.getElementById('ar-status').textContent='Results could not be loaded. Reload the page to try again.';});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How PCSO Lotto Odds Work: A Plain-Math Guide (Tsansa sa Lotto)</title>
+<meta name="description" content="How the odds of PCSO games are calculated, why order matters in Swertres and EZ2, what a ticket is worth on average, the 20% tax on prizes and why hot numbers do not exist.">
+<link rel="canonical" href="https://phlottoodds.com/how-pcso-odds-work/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PH Lotto Odds">
+<meta property="og:title" content="How PCSO Lotto Odds Work: A Plain-Math Guide (Tsansa sa Lotto)">
+<meta property="og:description" content="How the odds of PCSO games are calculated, why order matters in Swertres and EZ2, what a ticket is worth on average, the 20% tax on prizes and why hot numbers do not exist.">
+<meta property="og:url" content="https://phlottoodds.com/how-pcso-odds-work/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23F2B33D%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single reading column like a stats handbook; each section is a "card" only where it holds a working tool. */
+:root{
+  --bg:#EEF2F4; --paper:#FFFFFF; --ink:#13232E; --muted:#5A6B76; --line:#D3DCE1;
+  --accent:#0F6E8C; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#C2462B; --good:#2E7D4F;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E171D; --paper:#15222A; --ink:#E4ECF0; --muted:#94A6B1; --line:#27373F;
+  --accent:#4FB3D1; --ball:#F2B33D; --ball-ink:#2B1D00; --hot:#E8765C; --good:#5FBF86; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:grid;gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;min-width:0}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.ballmini{width:22px;height:22px;border-radius:50%;background:var(--ball);display:inline-block;box-shadow:inset -3px -3px 0 rgba(0,0,0,.15)}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 .9rem var(--mono);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{display:grid;gap:20px}
+.odds-big{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px}
+.odds-big .n{font:700 clamp(2.4rem,7vw,4.4rem)/1 var(--mono);letter-spacing:-.03em}
+.balls{display:flex;gap:8px;flex-wrap:wrap}
+.ball{width:44px;height:44px;border-radius:50%;background:var(--ball);color:var(--ball-ink);display:grid;place-items:center;font:600 1rem var(--mono);box-shadow:inset -5px -6px 0 rgba(0,0,0,.14)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fact{border-top:2px solid var(--line);padding-top:10px;display:grid;gap:4px}
+.fact b{font:600 1.25rem var(--mono)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.r,th.r{text-align:right}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+label{display:grid;gap:4px;font-size:.82rem;color:var(--muted)}
+input,select,textarea{font:500 1rem var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:110px;font-size:.85rem}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--ink)}
+.check input{width:auto}
+.result{display:grid;gap:10px;align-content:start}
+.result .big{font:700 2rem var(--mono)}
+.bar{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--hot)}
+button{font:600 .92rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{font:600 .75rem var(--mono);padding:3px 9px;border-radius:999px;border:1px solid currentColor}
+.pill.good{color:var(--good)}.pill.warn{color:var(--hot)}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.chart{overflow-x:auto}
+.note{font-size:.85rem;color:var(--muted)}
+.adslot{border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font:500 .75rem var(--mono);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+footer{border-top:1px solid var(--line);padding-top:20px;display:grid;gap:10px;font-size:.88rem;color:var(--muted)}
+.status{font-size:.88rem}
+@media (prefers-reduced-motion:no-preference){.ball{transition:transform .2s}.ball:hover{transform:translateY(-3px)}}
+
+a.brand{color:var(--ink);text-decoration:none}
+.footlinks a{color:var(--accent)}
+.prose{display:grid;gap:14px;max-width:70ch}
+.prose h2{margin-top:12px}
+.prose ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.prose a{color:var(--accent)}
+.lucky-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.lucky-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;min-width:0}
+.lucky-card h3{font-size:.95rem}
+.lucky-card .balls{gap:6px}
+.lucky-card .ball{width:34px;height:34px;font-size:.85rem}
+.lucky-card .odds{font:500 .8rem var(--mono);color:var(--muted)}
+
+/* generated: results */
+.result-card{align-content:start}
+.result-card h3 a{color:var(--ink);text-decoration:none}.result-card h3 a:hover{color:var(--accent)}
+.ball.sm{width:34px;height:34px;font-size:.85rem}
+.draw{display:flex;align-items:center;gap:10px}.draw .when{font:600 .75rem var(--mono);color:var(--muted);min-width:42px}
+.updated{font:500 .8rem var(--mono);color:var(--muted)}
+.gamelinks{display:flex;flex-wrap:wrap;gap:8px}.gamelinks a{font:600 .85rem var(--mono);color:var(--accent);border:1px solid var(--line);background:var(--paper);padding:6px 11px;border-radius:999px;text-decoration:none}
+.gamelinks a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="ballmini"></span>PH Lotto Odds</a>
+    <nav><a href="/#results">Results today</a><a href="/#odds">Odds</a><a href="/#value">Expected value</a><a href="/#hot">Hot numbers?</a><a href="/how-pcso-odds-work/">Guide</a></nav>
+  </header>
+
+  <article class="prose">
+    <p class="eyebrow">Guide</p>
+    <h1>How PCSO lotto odds work</h1>
+    <p>Every PCSO game comes down to one question: how many different results are possible? Your <em>tsansa</em> (chance) of winning with one ticket is one divided by that number. This guide shows how to count it for every game, in plain math.</p>
+
+    <h2>Lotto 6/42 to Ultra Lotto 6/58: order does not matter</h2>
+    <p>In the big lotto games you choose 6 numbers, and the machine draws 6 balls. The order of the balls does not count. Mathematicians call this a <strong>combination</strong>, written C(58, 6) for Ultra Lotto:</p>
+    <p class="num">C(58, 6) = (58 × 57 × 56 × 55 × 54 × 53) ÷ (6 × 5 × 4 × 3 × 2 × 1) = 40,475,358</p>
+    <p>So one ticket of Ultra Lotto 6/58 has a 1 in 40,475,358 chance of hitting the jackpot. The same formula gives:</p>
+    <ul>
+      <li>Grand Lotto 6/55: 1 in 28,989,675</li>
+      <li>Super Lotto 6/49: 1 in 13,983,816</li>
+      <li>Mega Lotto 6/45: 1 in 8,145,060</li>
+      <li>Lotto 6/42: 1 in 5,245,786</li>
+    </ul>
+    <p>To picture 1 in 40 million: if you bought one ticket for every Ultra Lotto draw (three a week), you would wait on average about 260,000 years for a jackpot.</p>
+
+    <h2>Swertres, EZ2, 4D and 6D: order matters</h2>
+    <p>In the digit games your <em>taya</em> (bet) must match the draw in the exact order. Each position is independent, so you multiply:</p>
+    <ul>
+      <li>3D Swertres: 10 × 10 × 10 = 1,000 possible results, so 1 in 1,000.</li>
+      <li>2D EZ2: two numbers from 1 to 31, so 31 × 31 = 961 results, 1 in 961.</li>
+      <li>4D Lotto: 10<sup>4</sup> = 10,000 results.</li>
+      <li>6D Lotto: 10<sup>6</sup> = 1,000,000 results.</li>
+    </ul>
+    <p>A “rambolito” bet wins if the digits come out in any order. It covers more results but pays a smaller prize, so it does not change the overall picture.</p>
+
+    <h2>What a ticket is worth on average</h2>
+    <p>The <strong>expected value</strong> is the average amount a ticket gives back, counting every prize weighted by its chance. For Swertres it is simple: a ₱10 straight bet that wins ₱4,500 with a chance of 1 in 1,000 gives back on average ₱4.50, so 45% of its price. EZ2 pays ₱4,000 with a chance of 1 in 961, about ₱4.16 per ₱10.</p>
+    <p>For the big lotto games the answer depends on the jackpot, which grows when nobody wins. The <a href="/#value">calculator on the home page</a> does the math with the current jackpot. In almost every draw, players get back well under half of what they spend.</p>
+
+    <h2>Taxes and shared jackpots</h2>
+    <p>Since the TRAIN law (Republic Act 10963), PCSO prizes above ₱10,000 are subject to a 20% tax. A ₱100 million jackpot is ₱80 million after tax. If several people win the same draw, the jackpot is shared between them, which lowers the real value of a big jackpot even more.</p>
+
+    <h2>Are some numbers “hot” or “due”?</h2>
+    <p>No. The balls have no memory. A number that came out often last month has exactly the same chance as any other in the next draw. This mistake is called the <strong>gambler's fallacy</strong>. On the <a href="/#hot">home page</a> you can test it on ten years of official results: numbers that were frequent in the first half of the draws are not more frequent in the second half.</p>
+    <p>For the same reason, 1-2-3-4-5-6 has exactly the same chance as any “lucky” combination. The only real difference: fewer people pick unusual combinations, so if you win, you are less likely to share the jackpot.</p>
+
+    <h2>Play responsibly</h2>
+    <p>The lottery is entertainment, not a way to earn money. Set a small budget you can afford to lose, and never play with money for rent, food, health or school. If gambling is causing problems for you or your family, talk to someone you trust or a health professional.</p>
+
+    <h2>Latest results</h2>
+    <p>See today's results for <a href="/ultra-lotto-6-58/">Ultra Lotto 6/58</a>, <a href="/grand-lotto-6-55/">Grand Lotto 6/55</a>, <a href="/super-lotto-6-49/">Super Lotto 6/49</a>, <a href="/mega-lotto-6-45/">Mega Lotto 6/45</a>, <a href="/lotto-6-42/">Lotto 6/42</a>, <a href="/6d-lotto/">6D</a>, <a href="/4d-lotto/">4D</a>, <a href="/swertres-3d/">Swertres 3D</a> and <a href="/ez2-2d/">EZ2 2D</a>.</p>
+  </article>
+
+  <footer>
+    <p><strong>Play responsibly.</strong> The lottery is entertainment, not an investment. No method, software or past result can raise your chance of winning. Never play money you need for rent, food or school.</p>
+    <p>This site is independent and not affiliated with the Philippine Charity Sweepstakes Office (PCSO). Results are collected automatically from published sources and may contain errors: always check pcso.gov.ph before claiming a prize.</p>
+    <p class="footlinks"><a href="/">Home</a> · <a href="/ultra-lotto-6-58/">Ultra Lotto 6/58</a> · <a href="/grand-lotto-6-55/">Grand Lotto 6/55</a> · <a href="/super-lotto-6-49/">Super Lotto 6/49</a> · <a href="/mega-lotto-6-45/">Mega Lotto 6/45</a> · <a href="/lotto-6-42/">Lotto 6/42</a> · <a href="/6d-lotto/">6D Lotto</a> · <a href="/4d-lotto/">4D Lotto</a> · <a href="/swertres-3d/">3D Swertres</a> · <a href="/ez2-2d/">2D EZ2</a> · <a href="/how-pcso-odds-work/">How PCSO odds work</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+</body>
+</html>
