@@ -405,7 +405,7 @@ def results_block(data, updated):
   <section id="results" aria-labelledby="h-results">
     <p class="eyebrow">PCSO lotto result today</p>
     <h2 id="h-results">Latest PCSO results</h2>
-    <p class="updated">Updated automatically after the 2 PM, 5 PM and 9 PM draws · last check {updated}</p>
+    <p class="updated">Updated automatically every evening · last check {updated}</p>
     <div class="lucky-grid">{cards}</div>
   </section>
 <!--RESULTS:END-->"""
