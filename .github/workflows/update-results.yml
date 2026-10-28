@@ -2,10 +2,11 @@ name: Update results and publish
 
 on:
   schedule:
-    - cron: "45 6 * * *"
-    - cron: "45 9 * * *"
-    - cron: "50 13 * * *"
-    - cron: "30 15 * * *"
+    # Manila = UTC+8
+    - cron: "30 14 * * *"   # 10:30 PM Manila
+    - cron: "59 15 * * *"   # 11:59 PM Manila
+    - cron: "0 23 * * *"    # 7:00 AM Manila
+    - cron: "0 4 * * *"     # 12:00 PM Manila
   workflow_dispatch:
   push:
     branches: [main]
